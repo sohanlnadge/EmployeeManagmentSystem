@@ -1,0 +1,56 @@
+﻿@model IEnumerable<EmployeeWebApplication.Models.Employee>
+
+<h2>Employee List</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Add Employee</a>
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var emp in Model)
+            {
+                <tr>
+                    <td>@emp.EmployeeId</td>
+                    <td>@emp.FirstName @emp.LastName</td>
+                    <td>@emp.Email</td>
+                    <td>@emp.Department</td>
+                    <td>
+                        <a asp-action="Delete"
+                           asp-route-id="@emp.EmployeeId"
+                           class="btn btn-danger btn-sm">
+                            Delete
+                        </a>
+                        <a asp-action="Edit"
+                           asp-route-id="@emp.EmployeeId"
+                           class="btn btn-secondary btn-sm">
+                            Edit
+                            </a>
+                        <a asp-action="Details"
+                           asp-route-id="@emp.EmployeeId"
+                           class="btn btn-info">
+                            Details
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No records found</td>
+            </tr>
+        }
+    </tbody>
+</table>
