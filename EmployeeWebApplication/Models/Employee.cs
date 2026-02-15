@@ -49,5 +49,6 @@ namespace EmployeeWebApplication.Models
 
         [Display(Name = "Year of Joining")]
         public string YearOfJoining { get; set; }
+        public DateTime UpdatedDate { get; internal set; }
     }
 }

@@ -15,6 +15,7 @@ namespace EmployeeWebApplication.Controllers
         }
 
         // GET: Employee
+        [HttpGet]
         public IActionResult Index()
         {
             var employees = _context.Employees.ToList();
@@ -91,7 +92,7 @@ namespace EmployeeWebApplication.Controllers
             var employee = _context.Employees.Find(id);
 
             if (employee == null)
-                return NotFound();
+                return RedirectToAction("Index");
 
             return View(employee);
         }
@@ -101,11 +102,14 @@ namespace EmployeeWebApplication.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Employee employee)
         {
+            var existingEmployee = _context.Employees.Find(id);
+
             if (id != employee.EmployeeId)
                 return NotFound();
 
             if (ModelState.IsValid)
             {
+                
                 _context.Employees.Update(employee);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));

@@ -9,13 +9,15 @@ namespace EmployeeWebApplication
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services
+            // Add services to the container 
             builder.Services.AddControllersWithViews()
                 .AddJsonOptions(options =>
                 {
+                    //A property naming policy or null to leave property names unchange
                     options.JsonSerializerOptions.PropertyNamingPolicy = null;
                 });
 
+            // Register the DbContext with SQL server using the connection string from appsetting.jeson
             builder.Services.AddDbContext<EmployeeDBContext>(options =>
                 options.UseSqlServer(
                     builder.Configuration.GetConnectionString("EmployeeConnection")));
@@ -37,7 +39,7 @@ namespace EmployeeWebApplication
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Employee}/{action=Create}/{id?}");
+                pattern: "{controller=Employee}/{action=Index}/{id?}");
 
             app.Run();
         }

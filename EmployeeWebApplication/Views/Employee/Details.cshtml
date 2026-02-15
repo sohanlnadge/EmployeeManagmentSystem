@@ -2,58 +2,121 @@
 
 @{
     ViewData["Title"] = "Employee Details";
+    var initials = $"{Model.FirstName?[0]}{Model.LastName?[0]}";
 }
 
-<h2>Employee Details</h2>
+<div class="container py-5">
 
-<table class="table table-striped table-bordered">
-    <tr>
-        <th>Employee ID</th>
-        <td>@Model.EmployeeId</td>
-    </tr>
-    <tr>
-        <th>First Name</th>
-        <td>@Model.FirstName</td>
-    </tr>
-    <tr>
-        <th>Last Name</th>
-        <td>@Model.LastName</td>
-    </tr>
-    <tr>
-        <th>Email</th>
-        <td>@Model.Email</td>
-    </tr>
-    <tr>
-        <th>Date of Birth</th>
-        <td>@Model.DateOfBirth.ToString("dd-MMM-yyyy")</td>
-    </tr>
-    <tr>
-        <th>Gender</th>
-        <td>@Model.Gender</td>
-    </tr>
-    <tr>
-        <th>Phone Number</th>
-        <td>@Model.PhoneNumber</td>
-    </tr>
-    <tr>
-        <th>Address</th>
-        <td>@Model.Address</td>
-    </tr>
-    <tr>
-        <th>City</th>
-        <td>@Model.City</td>
-    </tr>
-    <tr>
-        <th>Department</th>
-        <td>@Model.Department</td>
-    </tr>
-    <tr>
-        <th>Year Of Joining</th>
-        <td>@Model.YearOfJoining</td>
-    </tr>
-</table>
+    <!-- Header -->
+    <div class="mb-4">
+        <h2 class="fw-bold mb-1">Employee Details</h2>
+        <p class="text-muted">Detailed information about the selected employee</p>
+    </div>
 
-<div>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-    <a asp-action="Delete" asp-route-id="@Model.EmployeeId" class="btn btn-danger">Delete</a>
+    <!-- Profile Card -->
+    <div class="card border-0 shadow rounded-4">
+        <div class="card-body p-5">
+
+            <!-- Top Profile Section -->
+            <div class="d-flex align-items-center mb-5">
+
+                <!-- Avatar -->
+                <div class="rounded-circle bg-primary text-white
+                            d-flex align-items-center justify-content-center
+                            me-4"
+                     style="width:80px;height:80px;font-size:28px;">
+                    @initials
+                </div>
+
+                <!-- Name & Basic Info -->
+                <div>
+                    <h4 class="fw-bold mb-1">
+                        @Model.FirstName @Model.LastName
+                    </h4>
+                    <p class="text-muted mb-1">
+                        @Model.Email
+                    </p>
+                    <span class="badge bg-light text-dark border px-3 py-2">
+                        @Model.Department
+                    </span>
+                </div>
+
+            </div>
+
+            <!-- Details Grid -->
+            <div class="row g-4">
+
+                <div class="col-md-6">
+                    <label class="text-muted small">Employee ID</label>
+                    <div class="fw-semibold">@Model.EmployeeId</div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="text-muted small">Date of Birth</label>
+                    <div class="fw-semibold">
+                        @Model.DateOfBirth.ToString("dd-MMM-yyyy")
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="text-muted small">Gender</label>
+                    <div class="fw-semibold">@Model.Gender</div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="text-muted small">Phone Number</label>
+                    <div class="fw-semibold">@Model.PhoneNumber</div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="text-muted small">City</label>
+                    <div class="fw-semibold">@Model.City</div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="text-muted small">Year Of Joining</label>
+                    <div class="fw-semibold">@Model.YearOfJoining</div>
+                </div>
+
+                <div class="col-12">
+                    <label class="text-muted small">Address</label>
+                    <div class="fw-semibold">@Model.Address</div>
+                </div>
+
+                @* Optional Updated Date Display *@
+                @*if (Model.UpdatedDate != null)
+                {
+                    <div class="col-12">
+                        <label class="text-muted small">Last Updated</label>
+                        <div class="fw-semibold">
+                         @Model.UpdatedDate.Value.ToString("dd-MMM-yyyy hh:mm tt")
+                        </div>
+                    </div>
+                }*@
+
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-end mt-5">
+                <a asp-action="Index"
+                   class="btn btn-outline-secondary me-3 px-4">
+                    Back
+                </a>
+
+                <a asp-action="Edit"
+                   asp-route-id="@Model.EmployeeId"
+                   class="btn btn-outline-primary me-3 px-4">
+                    Edit
+                </a>
+
+                <a asp-action="Delete"
+                   asp-route-id="@Model.EmployeeId"
+                   class="btn btn-danger px-4">
+                    Delete
+                </a>
+            </div>
+
+        </div>
+    </div>
+
 </div>
