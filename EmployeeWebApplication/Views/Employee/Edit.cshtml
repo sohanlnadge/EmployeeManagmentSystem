@@ -1,116 +1,131 @@
 ﻿@model EmployeeWebApplication.Models.Employee
 
-@{
-    ViewData["Title"] = "Edit Employee";
-}
+<div class="card card-success">
 
-<div class="container py-5">
+    <!-- CARD HEADER -->
+    <div class="card-header">
+        <h3 class="card-title">Edit Employee</h3>
 
-    <!-- Header -->
-    <div class="mb-4">
-        <h2 class="fw-bold mb-1">Edit Employee</h2>
-        <p class="text-muted">Update employee information and save changes</p>
+        <div class="card-tools">
+
+            <!-- Collapse Button -->
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+
+            <!-- Remove Button -->
+            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+            </button>
+
+        </div>
     </div>
 
-    <!-- Card -->
-    <div class="card border-0 shadow rounded-4">
-        <div class="card-body p-5">
+    <!-- FORM -->
+    <form asp-action="Edit" method="post">
 
-            <form asp-action="Edit" method="post">
-                <input type="hidden" asp-for="EmployeeId" />
+        <input type="hidden" asp-for="EmployeeId" />
 
-                <div class="row">
+        <div class="card-body">
 
-                    <!-- First Name -->
-                    <div class="col-md-6 mb-4">
-                        <label asp-for="FirstName" class="form-label fw-semibold"></label>
-                        <input asp-for="FirstName" class="form-control form-control-lg" />
-                        <span asp-validation-for="FirstName" class="text-danger small"></span>
+            <div class="row">
+
+                <!-- LEFT SIDE -->
+                <div class="col-md-6">
+
+                    <div class="form-group mb-3">
+                        <label>First Name</label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
                     </div>
 
-                    <!-- Last Name -->
-                    <div class="col-md-6 mb-4">
-                        <label asp-for="LastName" class="form-label fw-semibold"></label>
-                        <input asp-for="LastName" class="form-control form-control-lg" />
-                        <span asp-validation-for="LastName" class="text-danger small"></span>
+                    <div class="form-group mb-3">
+                        <label>Last Name</label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
 
-                    <!-- Email -->
-                    <div class="col-md-6 mb-4">
-                        <label asp-for="Email" class="form-label fw-semibold"></label>
-                        <input asp-for="Email" class="form-control form-control-lg" />
-                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    <div class="form-group mb-3">
+                        <label>Email</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
 
-                    <!-- Date of Birth -->
-                    <div class="col-md-6 mb-4">
-                        <label asp-for="DateOfBirth" class="form-label fw-semibold"></label>
-                        <input asp-for="DateOfBirth" type="date" class="form-control form-control-lg" />
-                        <span asp-validation-for="DateOfBirth" class="text-danger small"></span>
+                    <div class="form-group mb-3">
+                        <label>Phone Number</label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
 
-                    <!-- Gender -->
-                    <div class="col-md-6 mb-4">
-                        <label asp-for="Gender" class="form-label fw-semibold"></label>
-                        <select asp-for="Gender" class="form-select form-select-lg">
+                    <div class="form-group mb-3">
+                        <label>Date Of Birth</label>
+                        <input asp-for="DateOfBirth" type="date" class="form-control" />
+                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDE -->
+                <div class="col-md-6">
+
+                    <div class="form-group mb-3">
+                        <label>Gender</label>
+                        <select asp-for="Gender" class="form-control">
                             <option value="">Select Gender</option>
                             <option>Male</option>
                             <option>Female</option>
                             <option>Other</option>
                         </select>
-                        <span asp-validation-for="Gender" class="text-danger small"></span>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
                     </div>
 
-                    <!-- Phone -->
-                    <div class="col-md-6 mb-4">
-                        <label asp-for="PhoneNumber" class="form-label fw-semibold"></label>
-                        <input asp-for="PhoneNumber" class="form-control form-control-lg" />
-                        <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                    <div class="form-group mb-3">
+                        <label>Department</label>
+                        <input asp-for="Department" class="form-control" />
+                        <span asp-validation-for="Department" class="text-danger"></span>
                     </div>
 
-                    <!-- Address -->
-                    <div class="col-12 mb-4">
-                        <label asp-for="Address" class="form-label fw-semibold"></label>
-                        <textarea asp-for="Address" class="form-control form-control-lg" rows="2"></textarea>
-                        <span asp-validation-for="Address" class="text-danger small"></span>
+                    <div class="form-group mb-3">
+                        <label>City</label>
+                        <input asp-for="City" class="form-control" />
+                        <span asp-validation-for="City" class="text-danger"></span>
                     </div>
 
-                    <!-- City -->
-                    <div class="col-md-6 mb-4">
-                        <label asp-for="City" class="form-label fw-semibold"></label>
-                        <input asp-for="City" class="form-control form-control-lg" />
-                        <span asp-validation-for="City" class="text-danger small"></span>
+                    <div class="form-group mb-3">
+                        <label>Year Of Joining</label>
+                        <input asp-for="YearOfJoining" class="form-control" />
+                        <span asp-validation-for="YearOfJoining" class="text-danger"></span>
                     </div>
 
-                    <!-- Department -->
-                    <div class="col-md-6 mb-4">
-                        <label asp-for="Department" class="form-label fw-semibold"></label>
-                        <input asp-for="Department" class="form-control form-control-lg" />
-                        <span asp-validation-for="Department" class="text-danger small"></span>
-                    </div>
-
-                    <!-- Year Of Joining -->
-                    <div class="col-md-6 mb-4">
-                        <label asp-for="YearOfJoining" class="form-label fw-semibold"></label>
-                        <input asp-for="YearOfJoining" class="form-control form-control-lg" />
-                        <span asp-validation-for="YearOfJoining" class="text-danger small"></span>
+                    <div class="form-group mb-3">
+                        <label>Address</label>
+                        <textarea asp-for="Address" class="form-control"></textarea>
+                        <span asp-validation-for="Address" class="text-danger"></span>
                     </div>
 
                 </div>
 
-                <!-- Buttons -->
-                <div class="d-flex justify-content-end mt-4">
-                    <a asp-action="Index" class="btn btn-outline-secondary me-3 px-4">
-                        Cancel
-                    </a>
-                    <button type="submit" class="btn btn-primary px-5 shadow-sm">
-                        Update Employee
-                    </button>
-                </div>
-
-            </form>
+            </div>
 
         </div>
-    </div>
+
+        <!-- FOOTER -->
+        <div class="card-footer">
+
+            <button type="submit" class="btn btn-success">
+                Update Employee
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                Cancel
+            </a>
+
+        </div>
+
+    </form>
 
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

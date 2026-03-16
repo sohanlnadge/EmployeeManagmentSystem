@@ -102,16 +102,33 @@ namespace EmployeeWebApplication.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Employee employee)
         {
-            var existingEmployee = _context.Employees.Find(id);
-
             if (id != employee.EmployeeId)
                 return NotFound();
 
             if (ModelState.IsValid)
             {
-                
-                _context.Employees.Update(employee);
+                var existingEmployee = _context.Employees.Find(id);
+
+                if (existingEmployee == null)
+                    return NotFound();
+
+                // Update only allowed fields
+                existingEmployee.FirstName = employee.FirstName;
+                existingEmployee.LastName = employee.LastName;
+                existingEmployee.Email = employee.Email;
+                existingEmployee.PhoneNumber = employee.PhoneNumber;
+                existingEmployee.DateOfBirth = employee.DateOfBirth;
+                existingEmployee.Gender = employee.Gender;
+                existingEmployee.City = employee.City;
+                existingEmployee.Department = employee.Department;
+                existingEmployee.YearOfJoining = employee.YearOfJoining;
+                existingEmployee.Address = employee.Address;
+
+                // Set Updated Date
+                existingEmployee.UpdatedDate = DateTime.Now;
+
                 _context.SaveChanges();
+
                 return RedirectToAction(nameof(Index));
             }
 
