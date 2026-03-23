@@ -3,7 +3,7 @@ using EmployeeWebApplication.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
+using Serilog;
 
 namespace EmployeeWebApplication
 {
@@ -14,6 +14,17 @@ namespace EmployeeWebApplication
         {
             // Create builder
             var builder = WebApplication.CreateBuilder(args);
+
+            // Ensure log folder exists (must match path in appsettings.json)
+            Directory.CreateDirectory(@"E:\ApplicationLogs");
+
+            // Configure Serilog from configuration
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(builder.Configuration)
+                .Enrich.FromLogContext()
+                .CreateLogger();
+
+            builder.Host.UseSerilog();
 
             // Add MVC controllers and views
             builder.Services.AddControllersWithViews()
@@ -105,7 +116,7 @@ namespace EmployeeWebApplication
             // Default route configuration
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Employee}/{action=Index}/{id?}");
+                pattern: "{controller=Account}/{action=Login}/{id?}");
 
             // Run the application
             app.Run();
