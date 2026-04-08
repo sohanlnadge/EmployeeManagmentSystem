@@ -161,6 +161,25 @@
                         <i class="fas fa-th-large"></i>
                     </a>
                 </li>
+                @* Logout button placed in top-right navbar. It calls AccountController.Logout action. *@
+                @if (User?.Identity?.IsAuthenticated == true)
+                {
+                    <li class="nav-item">
+                        <a asp-controller="Account" asp-action="Logout" class="nav-link" title="Logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="d-none d-sm-inline"> Logout</span>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a asp-controller="Account" asp-action="Login" class="nav-link" title="Login">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span class="d-none d-sm-inline"> Login</span>
+                        </a>
+                    </li>
+                }
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -180,7 +199,10 @@
                         <img src="~/AdminLteAssest/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        @* <a href="#" class="d-block">Alexander Pierce</a> *@
+                        <a href="#" class="d-block">
+                            @User.Identity.Name
+                        </a>
                     </div>
                 </div>
 
@@ -301,35 +323,23 @@
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <i class="fas fa-user nav-icon"></i>
                                 <p>
-                                    Charts
+                                     Employee
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/charts/chartjs.html" class="nav-link">
+                                    <a asp-controller="Employee" asp-action="Create" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>ChartJS</p>
+                                        <p>Employee Create</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/charts/flot.html" class="nav-link">
+                                    <a asp-controller="Employee" asp-action="Index" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Flot</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/charts/inline.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Inline</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/charts/uplot.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>uPlot</p>
+                                        <p>Employee List</p>
                                     </a>
                                 </li>
                             </ul>
